@@ -39,7 +39,7 @@ def load_data(mode="train"):
     char2idx, idx2char = load_vocab()
 
     if mode=="train":
-        if "LJ" in hp.data:
+        if True:
             # Parse
             fpaths, text_lengths, texts = [], [], []
             transcript = os.path.join(hp.data, 'transcript.csv')
@@ -103,7 +103,7 @@ def get_batch():
 
         if hp.prepro:
             def _load_spectrograms(fpath):
-                fname = os.path.basename(fpath)
+                fname = os.path.basename(fpath).decode("utf-8")
                 mel = "mels/{}".format(fname.replace("wav", "npy"))
                 mag = "mags/{}".format(fname.replace("wav", "npy"))
                 return fname, np.load(mel), np.load(mag)
